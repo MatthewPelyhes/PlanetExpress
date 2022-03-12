@@ -1,0 +1,102 @@
+body {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Asap', sans-serif;
+    background-color: #27323a;
+    background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png");
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    text-align: start;
+}
+
+#main {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 4rem;
+}
+
+input {
+    width: 35rem;
+    height: 2rem;
+    border-radius: 30px;
+    border: 3px solid #A3F7BF;   
+    margin: 1rem;
+    padding: 5px 0 5px 15px;
+    background-color: transparent;
+    color: white;
+    font-size: 1.3rem;
+}
+
+input:focus{
+    outline: none;
+    border-color: #29A19C;
+    background-color: transparent;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+.button {
+    border: 2px solid #A3F7BF;;
+    border-radius: 0.25rem;
+    background: transparent;
+    color: #A3F7BF;
+    font-family: system-ui, sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    text-decoration: none;
+    padding: 0.5rem 0.5rem;
+    margin: 0.25rem;
+    cursor: pointer;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; 
+    transition: all .3s ease-in-out;
+}
+
+.button:hover{
+    background-color: rgba(163, 247, 191, 0.3);
+    color: #A3F7BF;
+    transform: scale(1.05); 
+}
+
+#shutdown{
+border-color: rgb(245, 12, 12);
+color: rgb(245, 12, 12);;
+}
+
+#shutdown:hover{
+    color: #d80404;
+    background-color: rgba(255, 0, 0, 0.3);
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+h1 {
+    margin: 0 auto;
+    text-align: center;
+    height: fit-content;
+    color: #A3F7BF;
+    font-size: 4rem;
+    text-shadow: 2px 2px #29A19C;
+}
+
+#button-block{
+    display: flex;
+    justify-content: space-between;
+    width: 35rem;
+    margin-top: 1.5rem;
+}
