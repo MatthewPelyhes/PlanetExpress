@@ -20,16 +20,27 @@ visit.addEventListener("click", () => {
 })
 
 boot.addEventListener("click", ()=> {
-    window.Intercom('boot', {  
-        "app_id": `${app_ID.value}`,  
-        "email": `${email.value}`,
-        "user_id": `${user_ID.value}`,
-        "name": `${user_name.value}`,
-        "company": {
-            "id": `${company_id.value}`,
-            "name": `${company_name.value}`
-        }
-    })
+    if(company_name.value) {
+        window.Intercom('boot', {  
+            "app_id": `${app_ID.value}`,  
+            "email": `${email.value}`,
+            "user_id": `${user_ID.value}`,
+            "name": `${user_name.value}`,
+    
+            "company": {
+                "id": `${company_id.value}`,
+                "name": `${company_name.value}`
+            }
+        })
+    } else {
+        window.Intercom('boot', {  
+            "app_id": `${app_ID.value}`,  
+            "email": `${email.value}`,
+            "user_id": `${user_ID.value}`,
+            "name": `${user_name.value}`,
+        })
+    }
+    
     console.log(`${user_name.value}`)
     console.log("clicked boot")
 })
