@@ -57,7 +57,11 @@ update.addEventListener("click", ()=> {
 
 shutdown.addEventListener("click", () => {
     Intercom('shutdown')
-    window.location.reload()
+    setTimeout(() => {
+        console.log("Delayed for 1 second.");
+        window.location.reload()
+      }, "1000");
+   
     console.log('shutdown called')
 })
 
