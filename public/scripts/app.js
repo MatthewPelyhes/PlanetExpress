@@ -13,6 +13,22 @@ const company_name = document.querySelector("#company_name")
 const company_id = document.querySelector("#company_id")
 const jwt_secret = document.querySelector("#jwt_secret")
 
+function ensureIntercomLoaded(appId) {
+    return new Promise((resolve) => {
+        if (document.querySelector('script[src*="widget.intercom.io"]')) {
+            resolve();
+            return;
+        }
+        const s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = `https://widget.intercom.io/widget/${appId}`;
+        s.onload = resolve;
+        const x = document.getElementsByTagName('script')[0];
+        x.parentNode.insertBefore(s, x);
+    });
+}
+
 function base64url(buffer) {
     const bytes = buffer instanceof ArrayBuffer ? new Uint8Array(buffer) : buffer;
     let binary = '';
@@ -40,13 +56,16 @@ async function generateJWT(secret, payload) {
     return `${signingInput}.${base64url(signature)}`;
 }
 
-visit.addEventListener("click", () => {
+visit.addEventListener("click", async () => {
+    await ensureIntercomLoaded(app_ID.value);
     window.Intercom('boot', {
-        "app_id": `${app_ID.value}`
+        "app_id": app_ID.value
     })
 })
 
 boot.addEventListener("click", async () => {
+    await ensureIntercomLoaded(app_ID.value);
+
     let bootSettings = {
         "app_id": app_ID.value,
         "email": email.value,
