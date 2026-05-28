@@ -66,12 +66,11 @@ visit.addEventListener("click", async () => {
 boot.addEventListener("click", async () => {
     await ensureIntercomLoaded(app_ID.value);
 
-    let bootSettings = {
-        "app_id": app_ID.value,
-        "email": email.value,
-        "user_id": user_ID.value,
-        "name": user_name.value,
-    };
+    const bootSettings = { "app_id": app_ID.value };
+
+    if (email.value) bootSettings.email = email.value;
+    if (user_ID.value) bootSettings.user_id = user_ID.value;
+    if (user_name.value) bootSettings.name = user_name.value;
 
     if (company_name.value) {
         bootSettings.company = {
@@ -81,10 +80,8 @@ boot.addEventListener("click", async () => {
     }
 
     if (jwt_secret.value) {
-        const payload = {
-            user_id: user_ID.value,
-            exp: Math.floor(Date.now() / 1000) + 3600,
-        };
+        const payload = { exp: Math.floor(Date.now() / 1000) + 3600 };
+        if (user_ID.value) payload.user_id = user_ID.value;
         if (email.value) payload.email = email.value;
 
         const token = await generateJWT(jwt_secret.value, payload);
@@ -92,9 +89,8 @@ boot.addEventListener("click", async () => {
         console.log("Generated JWT:", token);
     }
 
+    console.log("Booting Intercom with:", bootSettings);
     window.Intercom('boot', bootSettings);
-    console.log(`${user_name.value}`)
-    console.log("clicked boot")
 })
 
 update.addEventListener("click", ()=> {
